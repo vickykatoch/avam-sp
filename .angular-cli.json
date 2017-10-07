@@ -5,8 +5,9 @@
   },
   "apps": [
     {
+      "name": "main",
       "root": "src",
-      "outDir": "dist",
+      "outDir": "dist/main",
       "assets": [
         "assets",
         "favicon.ico"
@@ -19,10 +20,37 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "",
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [
         "../node_modules/log4javascript/js/log4javascript_uncompressed.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "control-panel",
+      "root": "src",
+      "outDir": "dist/control-panel",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "cp-index.html",
+      "main": "control-panel.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "",
+      "styles": [        
+        "styles.scss"
+      ],
+      "scripts": [
+        "../node_modules/log4javascript/js/log4javascript_uncompressed.js"        
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -56,7 +84,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   }
 }

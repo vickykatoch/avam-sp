@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve-main-prod" : "ng serve --app main --prod --aot"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "^4.4.4",
     "@angular/platform-browser-dynamic": "^4.4.4",
     "@angular/router": "^4.4.4",
+    "bootstrap": "^4.0.0-beta",
     "core-js": "^2.4.1",
     "log4javascript": "^1.4.15",
     "rxjs": "^5.4.3",
