@@ -1,4 +1,4 @@
-import { SocketMessage } from "./socket-models";
+import { SocketMessage } from "../models/socket-models";
 import { Subject } from "rxjs/Subject";
 
 

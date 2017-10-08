@@ -10,6 +10,7 @@
       "outDir": "dist/main",
       "assets": [
         "assets",
+        "appConfigs",
         "favicon.ico"
       ],
       "index": "index.html",

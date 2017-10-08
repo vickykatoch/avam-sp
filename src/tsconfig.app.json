@@ -14,6 +14,9 @@
       ],
       "common-model-utils" : [
         "./shared/core/common/common-model-utils/index"
+      ], 
+      "avam-core-services" : [
+        "./shared/core/common/avam-core-services/index"
       ]
     }
   },
