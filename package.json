@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve-main-prod" : "ng serve --app main --prod --aot"
+    "serve-main-prod": "ng serve --app main --prod --aot",
+    "compile-ww": "rollup -c ./src/shared/core/common/webworkers-core/rollup.config.js"
   },
   "private": true,
   "dependencies": {
@@ -24,7 +25,9 @@
     "@angular/router": "^4.4.4",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.4.1",
+    "lodash": "^4.17.4",
     "log4javascript": "^1.4.15",
+    "ramda": "^0.24.1",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.18"
   },
@@ -34,7 +37,9 @@
     "@angular/language-service": "^4.4.4",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
+    "@types/lodash": "^4.14.77",
     "@types/node": "~6.0.60",
+    "@types/ramda": "^0.24.16",
     "codelyzer": "~3.2.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
@@ -46,6 +51,10 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
     "rollup": "^0.50.0",
+    "rollup-plugin-commonjs": "^8.2.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-plugin-uglify": "^2.0.1",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.3.3"
