@@ -1,6 +1,7 @@
 export enum SocketMessageType {
     PING,
     PONG,
+    WORKER_READY,
     INITIALIZE,
     CONNECT,
     DISCONNECT,

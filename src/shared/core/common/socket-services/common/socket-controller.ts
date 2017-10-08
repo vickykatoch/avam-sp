@@ -2,7 +2,7 @@ import { SocketMessage, SocketMessageType, MessageBroker, SocketConnectionInfo }
 import 'rxjs/add/operator/filter';
 import { SocketProvider } from "./socket-provider.interface";
 // import { merge } from 'ramda';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 
 
 
@@ -13,23 +13,37 @@ interface ActiveSocketInfo {
 
 
 export class SocketController {
-    private connections : { [key: string] : ActiveSocketInfo } = {};
+    private connections: { [key: string]: ActiveSocketInfo } = {};
 
     // #region ctor
     constructor() {
-        MessageBroker.getInstance().inBox$
-            .filter(this.validMessageFilter)
-            .subscribe(this.onMessageReceived.bind(this));
+        if (SocketController._instance) {
+            throw new Error("Error: Instantiation failed: Use SocketController.instance instead of new.");
+        }
+        SocketController._instance = this;
     }
     //  #endregion
     
     // #region Public Methods
+    init() {
+        MessageBroker.instance.inBox$
+        .filter(this.validMessageFilter)
+        .subscribe(this.onMessageReceived.bind(this));
+        MessageBroker.instance.sendToOutBox({
+            type        : SocketMessageType.WORKER_READY,
+            sender      : 'ANONYMOUS-WKR',
+            ts          : Date.now()
+        });
+        console.log('Socket controller initialized');
+    }
     onMessageReceived(socketMessage: SocketMessage) {
-        switch(socketMessage.type) {
+        switch (socketMessage.type) {
             case SocketMessageType.PING:
                 this.pong(socketMessage);
                 break;
             case SocketMessageType.INITIALIZE:
+                
+                console.log(socketMessage);
                 break;
             default:
                 break;
@@ -37,18 +51,21 @@ export class SocketController {
     }
     // #endregion
 
+    //#region Singleton Implementation
+    private static _instance = new SocketController();
+    public static get instance(): SocketController {
+        return SocketController._instance;
+    }
+    //#endregion
+
     // #region Helper Methods
-    validMessageFilter(socketMessage: SocketMessage) : boolean {
+    validMessageFilter(socketMessage: SocketMessage): boolean {
         return socketMessage !== null  && socketMessage !== undefined;
     }
     pong(socketMessage: SocketMessage) {
         const message = _.merge(socketMessage, { type: SocketMessageType.PONG});
-        message.sender = '';
-        MessageBroker.getInstance().sendToOutBox(message);
+        message.sender = 'DEFAULT';
+        MessageBroker.instance.sendToOutBox(message);
     }
     //#endregion
 }
-
-const socketController = new SocketController();
-
-export { socketController as SocketControllerInstance };

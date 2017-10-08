@@ -7,13 +7,18 @@ export class MessageBroker {
     inBox$ = this.inBoxNotifier.asObservable();
     private outBoxNotifier = new Subject<SocketMessage>();
     outBox$ = this.outBoxNotifier.asObservable();
+    private static _instance = new MessageBroker();
     
 
     constructor() {
         if (MessageBroker._instance) {
-            throw new Error("Error: Instantiation failed: Use MessageBroker.getInstance() instead of new.");
+            throw new Error("Error: Instantiation failed: Use MessageBroker.instance instead of new.");
         }
         MessageBroker._instance = this;
+    }
+
+    init() {
+
     }
     
     sendToInbox(message: SocketMessage) {
@@ -24,8 +29,8 @@ export class MessageBroker {
     }
 
     //#region Singleton Implementation
-    private static _instance = new MessageBroker();
-    public static getInstance(): MessageBroker {
+    
+    public static get instance(): MessageBroker {
         return MessageBroker._instance;
     }
     //#endregion

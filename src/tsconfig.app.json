@@ -7,12 +7,18 @@
     "types": [],
     "paths": {
       "avam-logger": [
-        "./shared/core/modules/avam-log4js-logger"
+        "./shared/core/modules/avam-log4js-logger/index"
+      ],
+      "socket-proxy-agent" : [
+        "./shared/core/common/socket-proxy-agent/index"
+      ],
+      "common-model-utils" : [
+        "./shared/core/common/common-model-utils/index"
       ]
     }
   },
-  "exclude": [
-    "test.ts",
+  "exclude": [    
+    "test.ts",    
     "**/*.spec.ts"
   ]
 }

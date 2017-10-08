@@ -1,10 +1,13 @@
 import { MessageBroker } from '../common-model-utils/index';
-// import { SocketControllerInstance } from '../socket-services/index';
+import { SocketController } from '../socket-services/index';
 
+let satisfyCompiler : any;
 
+MessageBroker.instance.outBox$.subscribe((message)=> postMessage(message, satisfyCompiler));
 
-MessageBroker.getInstance().sendToInbox({ type : 1, sender : 'BK', ts : Date.now()})
+SocketController.instance.init();
 
-// this.addEventListener('message', (evt: any)=> {
-//     console.log(evt);
-// });
+onmessage = (evt: MessageEvent) => {
+    MessageBroker.instance.sendToInbox(evt.data);
+};
+

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AvamLog4jsLoggerModule } from 'avam-logger';
+import { SocketProxyAgentModule } from "socket-proxy-agent";
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { AvamLog4jsLoggerModule } from 'avam-logger';
   ],
   imports: [
     BrowserModule,
+    SocketProxyAgentModule,
     AvamLog4jsLoggerModule
   ],
   providers: [],
