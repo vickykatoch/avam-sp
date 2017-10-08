@@ -9,6 +9,7 @@
 /node_modules
 /server/node_modules
 /server/build
+/src/assets/workers
 
 
 # IDEs and editors
