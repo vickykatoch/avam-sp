@@ -32,4 +32,7 @@ class ApplicationInfoHelper {
             version           : '(empty)'
         };
     }
+    get mandatoryProps() : string[] {
+        return ['name','user','env','region','version'];
+    }
 }
