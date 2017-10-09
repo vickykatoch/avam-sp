@@ -29,7 +29,7 @@ export default {
 */
 
 export default {
-    input: './src/shared/core/common/webworkers-core/ww-socket.loader.ts',
+    input: './src/shared/core/services/webworkers-core/ww-socket.loader.ts',
     output: {
         file: './src/assets/workers/socket-loader.js',
         format: "umd",

@@ -19,16 +19,16 @@
     ],
     "paths": {
       "@common-model-utils/*": [
-        "shared/core/common/common-model-utils/*"
+        "shared/core/services/common-model-utils/*"
       ],
       "@avam-core-services/*" : [
-        "./shared/core/common/avam-core-services/*"
+        "./shared/core/services/avam-core-services/*"
       ],
       "@avam-logger/*" : [
-        "shared/core/common/avam-log4js-logger/*"
+        "shared/core/services/avam-log4js-logger/*"
       ],
       "@socket-proxy-agent/*" : [
-        "shared/core/common/socket-proxy-agent/*"
+        "shared/core/services/socket-proxy-agent/*"
       ]
     }
   },
