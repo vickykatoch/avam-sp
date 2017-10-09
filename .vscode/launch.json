@@ -8,7 +8,7 @@
                   "type": "node",
                   "request": "launch",
                   "name": "Launch Program",
-                  "program": "${workspaceRoot}/server/build/index",
+                  "program": "${workspaceRoot}/server/index",
                   "smartStep": true,
                   "outFiles": [
                         "${workspaceRoot}/server/build/**/*.js"

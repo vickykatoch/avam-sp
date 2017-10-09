@@ -9,8 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-prod:cp" : "ng build --app control-panel --prod --aot",
-    "build-prod:main" : "ng build --app main --prod --aot",
+    "build-prod:cp": "ng build --app control-panel --prod --aot",
+    "build-prod:main": "ng build --app main --prod --aot",
     "serve-main-prod": "npm run compile-ww && ng serve --app main --prod --aot --port=4300",
     "compile-ww": "rollup -c ./src/shared/core/services/webworkers-core/rollup.config.js",
     "compile-ww-watch": "rollup -c ./src/shared/core/services/webworkers-core/rollup.config.js -w"
