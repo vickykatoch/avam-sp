@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ApplicationInfo, CoreModelHelper, CommonUtils } from "@common-model-utils/index";
+import { ApplicationInfo, CoreModelHelper, CommonUtils, MAIN_APP_NAME } from "@common-model-utils/index";
 import { ApplicationLogger, ApplicationLoggingService } from '@avam-logger/index';
 
 import "rxjs/add/operator/first";
-
+import { UserPreferenceService } from './user-preference.service';
+import { UserService } from './user.service';
+import { WorkspaceLayoutService } from './workspace-layout.service';
 
 @Injectable()
 export class ApplicationContextService {
   private appInfoNotifier = new BehaviorSubject<ApplicationInfo>(null);
+  private appReadyNotifier = new BehaviorSubject<boolean>(false);
   private appInfo = CoreModelHelper.instance.appInfoHelper.emptyAppInfo;
   appInfo$ = this.appInfoNotifier.asObservable();
+  isAppReady$ = this.appReadyNotifier.asObservable();
 
-  constructor() {
+  constructor(private userPreferenceService: UserPreferenceService, private userService : UserService, private appLayoutService : WorkspaceLayoutService) {
+
   }
 
   getApplicationInfo(): Promise<ApplicationInfo> {
@@ -20,6 +25,12 @@ export class ApplicationContextService {
       this.appInfo$.first(x => x !== null).subscribe(resolve, reject);
     });
   }
+
+  isMainApp() : boolean {
+    CommonUtils.instance.throwIfTrue(!this.appReadyNotifier.getValue(), 'Application is not yet ready. Please wait for app to ready before checking if it is a main app');
+    return this.appInfo.name === MAIN_APP_NAME;
+  }
+  
 
   //#region Application Info Property Writers
   set name(value: string) {
@@ -40,6 +51,10 @@ export class ApplicationContextService {
   }
   set version(value: string) {
     this.appInfo.version = value;
+    this.notifyWhenFinished();
+  }
+  set user(value: string) {
+    this.appInfo.user = value;
     this.notifyWhenFinished();
   }
   //#endregion
@@ -65,7 +80,24 @@ export class ApplicationContextService {
       }, 0);
     }
   }
-
+  private bootStrapCoreServices() {
+    this.appInfoNotifier.first(x=>x!==null).subscribe(appInfo=> {
+      if(this.appInfo.name === MAIN_APP_NAME) {
+        this.authenticateAndLoadUser(this.appInfo.user);
+      } else {
+        // Agents - no need to do anything
+      }
+    });
+  }
+  private authenticateAndLoadUser(userId: string) {
+    this.userService.signIn(this.appInfo.user).then(this.onUserLoaded).catch(console.error);
+  }
+  private onUserLoaded(userInfo) {
+    // TODO : 1 Loaded this.userPreferenceService
+    // 2. Load UserWorkspace
+    // 3. Merge streams and wait for completion
+    // 4. Once finished, notify app is ready
+  }
   //#endregion
 
 }

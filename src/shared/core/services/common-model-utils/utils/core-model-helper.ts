@@ -25,6 +25,7 @@ class ApplicationInfoHelper {
     get emptyAppInfo() : ApplicationInfo {
         return {
             name              : '(empty)',
+            user              : '(empty)',
             type              : '(empty)',
             env               : '(empty)',
             region            : '(empty)',

@@ -26,7 +26,7 @@ export class AppComponent {
     appContextService.region = "XNA";
     appContextService.version = "1.0.0-beta";
     appContextService.environment = "DEV";
-
+    appContextService.user = "BK";
     this.initWorker();
   }
 

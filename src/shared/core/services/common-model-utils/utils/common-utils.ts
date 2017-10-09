@@ -8,9 +8,20 @@ export class CommonUtils {
         CommonUtils._instance = this;
     }
 
+    //#region String Helpers  
     isStringNullOrEmpty(str: string, checkLocalEmpty?: boolean) : boolean {
         return !str || str.trim() === '' || ( checkLocalEmpty && str.toLowerCase() === '(empty)');
     }
+    //#endregion
+
+    //#region Assertion Helpers
+    throwIfTrue(isTrue: boolean, errorString: string) {
+        if(isTrue) {
+            throw new Error(errorString);
+        }
+    }
+    //#endregion
+
 
     static get instance() : CommonUtils {
         return CommonUtils._instance;
