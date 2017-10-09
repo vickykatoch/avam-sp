@@ -2,11 +2,13 @@ import * as express from 'express';
 import config from './config/config';
 import { UserController } from './controllers/user-controller';
 import * as bodyParser  from 'body-parser';
+import * as cors from 'cors';
 
 const app = express();
 const router = express.Router();
 const userController = new UserController(router);
 app.use(router);
+app.use(cors());
 app.use(bodyParser.json());
 
 
