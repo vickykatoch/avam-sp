@@ -1,4 +1,4 @@
-import { ApplicationLogger, LogLevel } from '../../common/logger-core/index';
+import { ApplicationLogger, LogLevel } from '../logger-core/index';
 import { Logger, Level } from "log4javascript";
 
 class LogLevelMapper {

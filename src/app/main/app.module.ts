@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AvamLog4jsLoggerModule } from 'avam-logger';
-import { AvamSocketProxyAgentModule } from "socket-proxy-agent";
-import { AvamCoreServicesModule } from 'avam-core-services';
+import { AvamLog4jsLoggerModule } from '@avam-logger/index';
+import { AvamSocketProxyAgentModule } from "@socket-proxy-agent/index";
+import { AvamCoreServicesModule } from '@avam-core-services/index';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { SocketMessage } from '../../common-model-utils/index';
+import { SocketMessage } from '@common-model-utils/index';
 
 /**
  * 

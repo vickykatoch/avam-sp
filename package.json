@@ -4,15 +4,16 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=4300",
+    "start": "npm run compile-ww && ng serve --port=4300 --aot",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-prod:cp" : "ng build --app control-panel --prod --aot",
     "build-prod:main" : "ng build --app main --prod --aot",
-    "serve-main-prod": "ng serve --app main --prod --aot --port=4300",
-    "compile-ww": "rollup -c ./src/shared/core/common/webworkers-core/rollup.config.js -w"
+    "serve-main-prod": "npm run compile-ww && ng serve --app main --prod --aot --port=4300",
+    "compile-ww": "rollup -c ./src/shared/core/common/webworkers-core/rollup.config.js",
+    "compile-ww-watch": "rollup -c ./src/shared/core/common/webworkers-core/rollup.config.js -w"
   },
   "private": true,
   "dependencies": {

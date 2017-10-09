@@ -1,4 +1,4 @@
-import { SocketMessage, SocketMessageType, MessageBroker, SocketConnectionInfo } from "../../common-model-utils/index";
+import { SocketMessage, SocketMessageType, MessageBroker, SocketConnectionInfo } from "@common-model-utils/index";
 import 'rxjs/add/operator/filter';
 import { SocketProvider } from "./socket-provider.interface";
 // import { merge } from 'ramda';

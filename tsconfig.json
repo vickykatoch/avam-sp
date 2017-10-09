@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -15,12 +16,25 @@
       "es2015",
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@common-model-utils/*": [
+        "shared/core/common/common-model-utils/*"
+      ],
+      "@avam-core-services/*" : [
+        "./shared/core/common/avam-core-services/*"
+      ],
+      "@avam-logger/*" : [
+        "shared/core/common/avam-log4js-logger/*"
+      ],
+      "@socket-proxy-agent/*" : [
+        "shared/core/common/socket-proxy-agent/*"
+      ]
+    }
   },
- 
   "exclude": [
     "node_modules",
-    "src/shared/core/common/webworkers-core",
+    "./shared/core/common/webworkers-core",
     "**/*.spec.ts"
   ]
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ApplicationLoggingService, ApplicationLogger } from 'avam-logger';
-import { SocketMessageType } from 'common-model-utils';
+import { ApplicationLoggingService, ApplicationLogger } from '@avam-logger/index';
+import { SocketMessageType } from '@common-model-utils/index';
+import { ApplicationContextService } from '@avam-core-services/index';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,20 @@ export class AppComponent {
   private logger : ApplicationLogger;
   private worker : Worker;
 
-  constructor(loggingService: ApplicationLoggingService) {
+  constructor(loggingService: ApplicationLoggingService, appContextService : ApplicationContextService) {
     this.logger = loggingService.getLogger('AppComponent');
     this.logger.info('Hi There');
+
+    appContextService.getApplicationInfo().then((appInfo)=> {
+      this.logger.info('Application Info : ', JSON.stringify(appInfo));
+    },error=> console.error);
+
+    appContextService.name = "AVAM-MAIN";
+    appContextService.appType = "MAIN";
+    appContextService.region = "XNA";
+    appContextService.version = "1.0.0-beta";
+    appContextService.environment = "DEV";
+
     this.initWorker();
   }
 

@@ -4,21 +4,7 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
-    "types": [],
-    "paths": {
-      "avam-logger": [
-        "./shared/core/modules/avam-log4js-logger/index"
-      ],
-      "socket-proxy-agent" : [
-        "./shared/core/common/socket-proxy-agent/index"
-      ],
-      "common-model-utils" : [
-        "./shared/core/common/common-model-utils/index"
-      ], 
-      "avam-core-services" : [
-        "./shared/core/common/avam-core-services/index"
-      ]
-    }
+    "types": []
   },
   "exclude": [    
     "test.ts",    

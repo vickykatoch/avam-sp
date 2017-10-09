@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApplicationLoggingService, ApplicationLogger, LogLevel } from '../../common/logger-core/index';
+import { ApplicationLoggingService, ApplicationLogger, LogLevel } from '../logger-core/index';
 import { 
   Logger, getRootLogger, Appender, BrowserConsoleAppender, PatternLayout, getLogger 
 } from 'log4javascript';
