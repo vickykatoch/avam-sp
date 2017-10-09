@@ -1,3 +1,0 @@
-export class noop1 {
-      
-}

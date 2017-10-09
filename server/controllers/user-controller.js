@@ -1,14 +1,16 @@
 const express = require('express');
-const userList = require('./db/users');
+const userList = require('../db/users');
+const lo = require('lodash');
 const router = express.Router();
 
 router.get('/:user', (req, res) => {
-    debugger;
-    const user = userList.filter(x=> x.id === req.url.user);
+    const userId = req.url.replace('/','');
+    
+    const user = lo.head(userList.filter(x=> x.id === userId));
     if(user) {
         res.json(user);
     } else {
-        res.status(404);
+        res.json({ status : 'user not found'});
     }
 });
 
