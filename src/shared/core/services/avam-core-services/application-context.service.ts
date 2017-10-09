@@ -90,7 +90,7 @@ export class ApplicationContextService {
     });
   }
   private authenticateAndLoadUser(userId: string) {
-    this.userService.signIn(this.appInfo.user).then(this.onUserLoaded).catch(console.error);
+    // this.userService.signIn(this.appInfo.user).then(this.onUserLoaded).catch(console.error);
   }
   private onUserLoaded(userInfo) {
     // TODO : 1 Loaded this.userPreferenceService

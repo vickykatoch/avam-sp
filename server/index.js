@@ -3,6 +3,7 @@ const bodyParser =  require('body-parser');
 const cors = require('cors');
 const config = require('./config/config');
 const userController = require('./controllers/user-controller');
+const appConfigController = require('./controllers/app-config-controller');
 
 const app = express();
 const router = express.Router();
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 
 
 app.use('/users',userController);
+app.use('/appConfigs',appConfigController);
 
 router.get('/',(req,res)=> {
     res.send('Hello World');

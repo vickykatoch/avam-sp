@@ -1,34 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApplicationLoggingService, ApplicationLogger } from '@avam-logger/index';
 import { SocketMessageType } from '@common-model-utils/index';
-import { ApplicationContextService } from '@avam-core-services/index';
+import { AppBootstrapperService } from '@avam-core-services/index';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
   private logger : ApplicationLogger;
   private worker : Worker;
 
-  constructor(loggingService: ApplicationLoggingService, appContextService : ApplicationContextService) {
+  constructor(loggingService: ApplicationLoggingService, private appBootStrapper : AppBootstrapperService) {
     this.logger = loggingService.getLogger('AppComponent');
     this.logger.info('Hi There');
 
-    appContextService.getApplicationInfo().then((appInfo)=> {
-      this.logger.info('Application Info : ', JSON.stringify(appInfo));
-    },error=> console.error);
+    // appContextService.getApplicationInfo().then((appInfo)=> {
+    //   this.logger.info('Application Info : ', JSON.stringify(appInfo));
+    // },error=> console.error);
 
-    appContextService.name = "AVAM-MAIN";
-    appContextService.appType = "MAIN";
-    appContextService.region = "XNA";
-    appContextService.version = "1.0.0-beta";
-    appContextService.environment = "DEV";
-    appContextService.user = "BK";
-    this.initWorker();
+    
+    // this.initWorker();
   }
+
+  ngOnInit() {
+    this.appBootStrapper.bootstrap('X23423','XNA','DEV');
+  }
+
 
   private initWorker() {
     this.worker = new Worker('assets/workers/socket-loader.js');

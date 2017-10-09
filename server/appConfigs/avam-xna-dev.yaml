@@ -1,0 +1,6 @@
+%YAML 1.2
+---
+api:
+  userInfoServiceUrl : 'http://localhost:8000/users'
+  workspaceServiceUrl : 'http://localhost:8000/workspace'
+...

@@ -10,9 +10,14 @@ export class AppBootstrapperService {
   constructor(private userService : UserService) {
 
   }
-  bootstrap(appInfo: ApplicationInfo): void {
-    this.validateAppInfo(appInfo);
-    this.userService.authenticate();
+  bootstrap(user: string, region: string, env: string): void {
+    // this.validateAppInfo(appInfo);
+    
+    this.userService.authenticate(user).then(user=> {
+      console.log(JSON.stringify(user));
+    }).catch(error=> {
+      console.error(error);
+    });
   }
 
   // #region Helper Methods
@@ -25,5 +30,6 @@ export class AppBootstrapperService {
     });
     CommonUtils.instance.throwIfTrue(!CommonUtils.instance.isStringNullOrEmpty(errorMessage), errorMessage);
   }
+
   // #endregion
 }
